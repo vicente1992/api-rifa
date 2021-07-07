@@ -12,8 +12,6 @@ const initMongo = require('./config/mongo')
 const path = require('path')
 const fileUpload = require('express-fileupload')
 
-
-
 require('./app/services/cron.services')
 // Setup express server port from ENV, default: 3000
 app.set('port', process.env.PORT || 3000)

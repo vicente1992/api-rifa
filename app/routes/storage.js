@@ -8,7 +8,7 @@ const requireAuth = passport.authenticate('jwt', {
 })
 
 const trimRequest = require('trim-request')
-
+const { roleAuthorization } = require('../controllers/auth')
 const {
   createStorage, getStorage,
 
@@ -19,7 +19,12 @@ const { validateGetStorage } = require('../controllers/storage/validators')
 /*
  * Register route
  */
-router.post('/', createStorage)
+router.post('/',
+  requireAuth,
+  roleAuthorization(['admin']),
+  trimRequest.all,
+  createStorage
+)
 /*
  * get route
  */
